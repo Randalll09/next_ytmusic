@@ -1,7 +1,11 @@
 import React from 'react';
 import Header from '@/components/elements/Header';
 
-const layout = ({ children }: { children: React.ReactNode }) => {
+interface Props {
+  children: ReactNode;
+}
+
+const layout = ({ children }: { children }:Props) => {
   return (
     <div className="w-full h-full">
       <Header>{children}</Header>
