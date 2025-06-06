@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
 import React, { useEffect, useState, useRef } from 'react';
+import useUIState from '@/hooks/useUIState';
 
 import UserIcon from '@/components/elements/UserIcon';
 import PagePadding from '@/components/PagePadding';
@@ -41,6 +42,8 @@ const HeaderDrawer = ({ children }) => {
 const Header = ({ children }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const headRef = useRef();
+  const { headerImageSrc } = useUIState();
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollValue = headRef?.current?.scrollTop;
@@ -58,6 +61,7 @@ const Header = ({ children }) => {
         <div className="relative h-[400px] w-full">
           <Image
             src={
+              headerImageSrc ||
               'https://cdn.pixabay.com/photo/2018/04/11/06/03/flamingo-3309628_1280.jpg'
             }
             alt="media Item"
@@ -97,7 +101,7 @@ const Header = ({ children }) => {
               </article>
             </HeaderDrawer>
             <article className="flex flex-row gap-4 items-center">
-              <FaChromecast />
+              <FaChromecast size={32} />
               <UserIcon />
             </article>
           </div>
